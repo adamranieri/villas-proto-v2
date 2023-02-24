@@ -5,13 +5,19 @@ const typeDefs = `
     hello(name: String): String!
     problems: [Problem]!
     messages(recipientUsername:String, senderUsername:String): [Message]!
-    employees(availabilityDate: Int): [Employee]!
-    assignments(assignedEmployee: String, afterStartTime: Int): [Assignment]!
+    employees(availableDate: Int): [Employee]!
+    assignments(assignedEmployee: String): [Assignment]!
+    login(username: String!): Employee!
+    logout(username: String!): Employee!
   }
 
   type Mutation {
     addProblem(input: ProblemInput!): Problem!
     addMessage(input: MessageInput!): Message!
+    markRead(messageId: String!): Boolean!
+    addAssignment(input: AssignmentInput!): Assignment!
+    deleteAssignment(assignmentId: String!): Boolean!
+    updateProblem(problemId: String!, status: ProblemStatus!) : UpdateProblemStatusResult
   }
 
   input ProblemInput {
@@ -23,6 +29,14 @@ const typeDefs = `
     senderUsername: String! 
     recipientUsername: String!  
     content: String!  
+  }
+
+  input AssignmentInput {
+    title: String! 
+    description: String! 
+    startTime: Int! 
+    endTime: Int! 
+    assignedEmployeeUsername: String!
   }
 
   enum ProblemStatus {
@@ -50,7 +64,6 @@ const typeDefs = `
 
   type Employee {
     username: String! 
-    password: String! 
     fname: String! 
     lname: String!
     isManager: Boolean
@@ -70,8 +83,6 @@ const typeDefs = `
     errMessage: String!
   }
 
-  union AssignmentResult = Assignment | ResourceNotFound
-  union LoginResult = Employee | ResourceNotFound
   union UpdateProblemStatusResult = Problem | ResourceNotFound
 
 `;

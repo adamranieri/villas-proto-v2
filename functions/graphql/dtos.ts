@@ -43,8 +43,7 @@ export type Problem = { //
 
 // mutations
 
-// employeeLogin(input:{username:string, password:string}): Employee
-// employeeLogout(): Employee
+
 // createAssignment(input: NewAssignment):Assignment  
 // deleteAssignemtn(input: {assignmentId:number}):Assignment | ResourceNotFound
 // createMessage(input: NewMessage): Message 
@@ -55,6 +54,6 @@ export type Problem = { //
 // Queries
 // messages(recipientUsername?:string, senderUsername?:string ) //username => Message[] ########
 // employees(availabilitydate: number) // => Message[]
-// assignments(assignedEmployee?: string, afterStartTime?:number)
+// assignments(assignedEmployee?: string)
 // problems() #######
-// worklogs(employeeUsername?:string , )
+// employeeLogin(input:{username:string, password:string}): Employee
